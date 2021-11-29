@@ -61,7 +61,7 @@
             margin: 20px;
         }
 
-        #submitButton {
+        #Submit {
             background-color: var(--primary-color);
             margin-left: 33%;
             padding: 15px 32px;
@@ -91,7 +91,7 @@
             color: white;
         }
 
-        #responseDiv {
+        #createDiv {
             margin-top: 20px;
             border-top: 1px solid var(--secondary-color);
         }

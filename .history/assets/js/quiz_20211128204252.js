@@ -163,19 +163,19 @@ function finishedQuiz () {
            paragraphCreator2.setAttribute("id", "createdParagraph2");
            clearInterval(intervalTime);
            createdParagraph.textContent = "Your final score is: " + timeRemaining;
-           questionsDiv.appendChild(paragraphCreator2);
+           questionsDiv.appendChild(createdParagraph2);
        }
 
        //label for user's initials
        var labelCreator = document.createElement("label");
        labelCreator.setAttribute("id", "createdLabel");
-       labelCreator.textContent = "Please enter your initials: ";
+       createdLabel.textContent = "Please enter your initials: ";
 
-       questionsDiv.appendChild(labelCreator);
+       questionsDiv.appendChild(createdLabel);
 
        //input for user to enter their initials
        var inputCreator = document.createElement("input");
-       inputCreator.setAttribute("type", "text");
+       inputCreator.setAttribute("type", text);
        inputCreator.setAttribute("id", "initial")
        inputCreator.textContent = "";
 
@@ -197,13 +197,14 @@ function finishedQuiz () {
            }
 
            else {
-               var finalScore = {initials: initials, score: timeRemaining};
+               var finalScore = {initials: initials, score: timeRemaining}
+               console.log(finalScore);
                var highScores = localStorage.getItem("highScores");
                if (highScores === null) {
                    highScores = [];
                }
                else {
-                   highScores = JSON.parse(highScores);
+                   highScores = JSON.parse("highScores");
                }
                highScores.push(finalScore);
                var newScore = JSON.stringify(highScores);

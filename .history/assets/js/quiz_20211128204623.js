@@ -203,7 +203,7 @@ function finishedQuiz () {
                    highScores = [];
                }
                else {
-                   highScores = JSON.parse(highScores);
+                   highScores = JSON.parse("highScores");
                }
                highScores.push(finalScore);
                var newScore = JSON.stringify(highScores);
