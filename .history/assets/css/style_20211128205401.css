@@ -4,13 +4,9 @@
 }
         
         #wrapper {
-            position: center;
-            justify-content: center;
-            align-content: center;
-            margin: auto;
-            border-top: 50%;
-            width: 50%;
-            height: 50%;
+            align-items: center;
+            width: 500px;
+            height: 500px;
             border: 1px solid var(--primary-color);
         }
         #startTime {
@@ -56,8 +52,6 @@
 
         button {
             border-radius: 8px;
-            text-decoration-color: var(secondary-color);
-            color: var(--primary-color);
         }
 
         textarea {
