@@ -16,4 +16,4 @@ Check the directory folder for a demonstration video of how the program works.
 
 ![image showcasing the page's functionality](https://github.com/brenhamp/code-quiz/blob/main/assets/code-quiz-example-image.PNG)
 
-The application can be found deployed [here](brenhamp.github.io/code-quiz)
+The application can be found deployed [here](https://brenhamp.github.io/code-quiz)
