@@ -54,6 +54,74 @@ var intervalTime = 0;
 var timePenalty = 5;
 
 
+
+
+//creates new unordered lists
+var ulCreator = document.createElement ("ul");
+
+
+//writes questions and choices to the page
+function render(questionIndex) {
+    //make sure these elements are empty
+    questionsDiv.innerHTML = "";
+    ulCreator.innerHTML = "";
+    
+    for (var i = 0; i < questions.length; i++) {
+        var userQuestion = questions[questionIndex].question;
+        var userChoices = questions[questionIndex].choices;
+        questionsDiv.textContent = userQuestion;
+    }
+
+    userChoices.forEach(function (newItem) {
+        var listItem = document.createElement("li");
+        listItem.textContent = newItem;
+        questionsDiv.appendChild(ulCreator);
+        ulCreate.appendChild(listItem);
+        listItem.addEventListener("click", (compare));
+    })
+    }
+
+// grade user's selected choice against contents of "answer"
+function grade(event) {
+    var userAnswer = event.target;
+
+    if(userAnswer.matches("li")) {
+        var divCreator = document.createElement("div");
+        divCreator.setAttribute("id", "responseDiv");
+
+        //if user's choice matches the answer
+        if (userAnswer.textContent == questions[questionIndex].answer) {
+            //increase their score
+            score++;
+            //notify user
+            responseDiv.textContent = "Correct! The answer is: " + questions[questionIndex].answer;
+        }
+
+        //If user is wrong
+        else {
+            //penalize their time
+            timeLeft = timeLeft - timePenalty;
+            //notify
+            responseDiv.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
+
+        }
+    }
+
+    //advance to next question
+
+    questionIndex++;
+
+    //finish quiz when questions run out
+    if (questionIndex >= questions.length) {
+        finishedQuiz ();
+        responseDiv.textContent = "End of quiz!" + " " + "You got " + score + "/" + questions.length + " correct!";
+    }
+    else {
+        render(questionIndex);
+    }
+    questionsDiv.appendChild(responseDiv);
+};
+
 //timer function
 
 startQuiz.addEventListener("click", function () {
@@ -69,76 +137,9 @@ startQuiz.addEventListener("click", function () {
             }
     }, 1000);
     }
-    render(quizIndex);
+    render(questionIndex);
+
 });
-
-//creates new unordered lists
-var ulCreator = document.createElement ("ul");
-
-
-//writes questions and choices to the page
-function render(quizIndex) {
-    //make sure these elements are empty
-    questionsDiv.innerHTML = "";
-    ulCreator.innerHTML = "";
-    
-    for (var i = 0; i < questions.length; i++) {
-        var userQuestion = questions[quizIndex].question;
-        var userChoices = questions[quizIndex].choices;
-        questionsDiv.textContent = userQuestion;
-    }
-
-    userChoices.forEach(function (newItem) {
-        var listItem = document.createElement("li");
-        listItem.textContent = newItem;
-        questionsDiv.appendChild(ulCreator);
-        ulCreator.appendChild(listItem);
-        listItem.addEventListener("click", (grade));
-    })
-    };
-
-// grade user's selected choice against contents of "answer"
-function grade(event) {
-    var userAnswer = event.target;
-
-    if(userAnswer.matches("li")) {
-        var divCreator = document.createElement("div");
-        divCreator.setAttribute("id", "responseDiv");
-
-        //if user's choice matches the answer
-        if (userAnswer.textContent == questions[quizIndex].answer) {
-            //increase their score
-            score++;
-            //notify user
-            divCreator.textContent = "Correct! The answer is: " + questions[quizIndex].answer;
-        }
-
-        //If user is wrong
-        else {
-            //penalize their time
-            timeLeft = timeLeft - timePenalty;
-            //notify
-            divCreator.textContent = "Wrong! The correct answer is: " + questions[quizIndex].answer;
-
-        }
-    }
-
-    //advance to next question
-
-    quizIndex++;
-
-    //finish quiz when questions run out
-    if (quizIndex >= questions.length) {
-        finishedQuiz ();
-        divCreator.textContent = "End of quiz!" + " " + "You got " + score + "/" + questions.length + " correct!";
-    }
-    else {
-        render(quizIndex);
-    }
-    questionsDiv.appendChild(divCreator);
-}
-
-
 //create landing page when the user finishes the quiz
 function finishedQuiz () {
     questionsDiv.innerHTML = "";

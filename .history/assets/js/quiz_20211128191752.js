@@ -69,7 +69,7 @@ startQuiz.addEventListener("click", function () {
             }
     }, 1000);
     }
-    render(quizIndex);
+    render(questionIndex);
 });
 
 //creates new unordered lists
@@ -77,14 +77,14 @@ var ulCreator = document.createElement ("ul");
 
 
 //writes questions and choices to the page
-function render(quizIndex) {
+function render(questionIndex) {
     //make sure these elements are empty
     questionsDiv.innerHTML = "";
     ulCreator.innerHTML = "";
     
     for (var i = 0; i < questions.length; i++) {
-        var userQuestion = questions[quizIndex].question;
-        var userChoices = questions[quizIndex].choices;
+        var userQuestion = questions[questionIndex].question;
+        var userChoices = questions[questionIndex].choices;
         questionsDiv.textContent = userQuestion;
     }
 
@@ -92,8 +92,8 @@ function render(quizIndex) {
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
         questionsDiv.appendChild(ulCreator);
-        ulCreator.appendChild(listItem);
-        listItem.addEventListener("click", (grade));
+        ulCreate.appendChild(listItem);
+        listItem.addEventListener("click", (compare));
     })
     };
 
@@ -106,11 +106,11 @@ function grade(event) {
         divCreator.setAttribute("id", "responseDiv");
 
         //if user's choice matches the answer
-        if (userAnswer.textContent == questions[quizIndex].answer) {
+        if (userAnswer.textContent == questions[questionIndex].answer) {
             //increase their score
             score++;
             //notify user
-            divCreator.textContent = "Correct! The answer is: " + questions[quizIndex].answer;
+            responseDiv.textContent = "Correct! The answer is: " + questions[questionIndex].answer;
         }
 
         //If user is wrong
@@ -118,24 +118,24 @@ function grade(event) {
             //penalize their time
             timeLeft = timeLeft - timePenalty;
             //notify
-            divCreator.textContent = "Wrong! The correct answer is: " + questions[quizIndex].answer;
+            responseDiv.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
 
         }
     }
 
     //advance to next question
 
-    quizIndex++;
+    questionIndex++;
 
     //finish quiz when questions run out
-    if (quizIndex >= questions.length) {
+    if (questionIndex >= questions.length) {
         finishedQuiz ();
-        divCreator.textContent = "End of quiz!" + " " + "You got " + score + "/" + questions.length + " correct!";
+        responseDiv.textContent = "End of quiz!" + " " + "You got " + score + "/" + questions.length + " correct!";
     }
     else {
-        render(quizIndex);
+        render(questionIndex);
     }
-    questionsDiv.appendChild(divCreator);
+    questionsDiv.appendChild(responseDiv);
 }
 
 

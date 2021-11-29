@@ -110,7 +110,7 @@ function grade(event) {
             //increase their score
             score++;
             //notify user
-            divCreator.textContent = "Correct! The answer is: " + questions[quizIndex].answer;
+            responseDiv.textContent = "Correct! The answer is: " + questions[quizIndex].answer;
         }
 
         //If user is wrong
@@ -118,7 +118,7 @@ function grade(event) {
             //penalize their time
             timeLeft = timeLeft - timePenalty;
             //notify
-            divCreator.textContent = "Wrong! The correct answer is: " + questions[quizIndex].answer;
+            responseDiv.textContent = "Wrong! The correct answer is: " + questions[quizIndex].answer;
 
         }
     }
@@ -130,12 +130,12 @@ function grade(event) {
     //finish quiz when questions run out
     if (quizIndex >= questions.length) {
         finishedQuiz ();
-        divCreator.textContent = "End of quiz!" + " " + "You got " + score + "/" + questions.length + " correct!";
+        responseDiv.textContent = "End of quiz!" + " " + "You got " + score + "/" + questions.length + " correct!";
     }
     else {
         render(quizIndex);
     }
-    questionsDiv.appendChild(divCreator);
+    questionsDiv.appendChild(responseDiv);
 }
 
 
