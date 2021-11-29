@@ -198,19 +198,7 @@ function finishedQuiz () {
 
            else {
                var finalScore = {initials: initials, score: timeRemaining}
-               console.log(finalScore);
-               var highScores = localStorage.getItem("highScores");
-               if (highScores === null) {
-                   highScores = [];
-               }
-               else {
-                   highScores = JSON.parse("highScores");
-               }
-               highScores.push(finalScore);
-               var newScore = JSON.stringify(highScores);
-               localStorage.setItem("highScores", newScore);
-               window.location.replace ("./HighScores.html");
            }
-       });
+       })
    
 }
